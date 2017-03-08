@@ -1,6 +1,14 @@
 #include "non_portable_stuff.h"
 #include "send_file.h"
 
+
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#include <Mswsock.h>
+
+#pragma comment(lib, "Ws2_32.lib")
+#pragma comment(lib, "Mswsock.lib")
+
 extern void cleanup();
 
 #ifdef _WIN32
@@ -26,7 +34,7 @@ BOOL __stdcall sighandler(DWORD param) {
 int init_WSOCK() {
 
 	int ret;
-	WSAData wsaData;
+	WSADATA wsaData;
 	ret = WSAStartup(MAKEWORD(2,2), &wsaData);
 
 	if (ret != 0) {
