@@ -248,13 +248,8 @@ int main(int argc, char* argv[]) {
 	char* remote_ipstr = strdup(argv[optind]);
 	char* filename = strdup(argv[optind+1]);
 
-	struct sockaddr_in local_saddr, remote_saddr;
-	memset(&local_saddr, 0, sizeof(local_saddr));
-	memset(&remote_saddr, 0, sizeof(local_saddr));
-
-	local_saddr.sin_family = AF_INET;
-	local_saddr.sin_addr.s_addr = INADDR_ANY;
-	local_saddr.sin_port = htons(port);
+	struct sockaddr_in remote_saddr;
+    memset(&remote_saddr, 0, sizeof(remote_saddr));
 
 	local_sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	if (local_sockfd < 0) { 
